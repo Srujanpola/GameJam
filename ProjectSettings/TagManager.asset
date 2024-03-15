@@ -9,6 +9,7 @@ TagManager:
   - Button
   - Player1
   - Blade
+  - Bound
   layers:
   - Default
   - TransparentFX

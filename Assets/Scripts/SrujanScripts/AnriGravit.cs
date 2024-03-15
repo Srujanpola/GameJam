@@ -14,8 +14,15 @@ public class AnriGravit : MonoBehaviour
     {
         if(plr1.transform.position.y>7 && plr2.transform.position.y > 7)
         {
-            brickfall.GetComponent<Rigidbody2D>().gravityScale = 1;
+            if(brickfall != null)
+            {
+                brickfall.GetComponent<Rigidbody2D>().gravityScale = 1;
+            }
+          
+
+            Destroy(brickfall.gameObject, 3f);
         }
     }
+    
     
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Shape : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class Shape : MonoBehaviour
             Instantiate(starGameobject.gameObject,collision.gameObject.transform.position, starGameobject.transform.rotation);
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
+            //StartCoroutine(ChangeScene());
+
+
+           
         }
         if (collision.gameObject.tag == "AntiGravityZone")
         {
@@ -31,4 +36,20 @@ public class Shape : MonoBehaviour
             this.transform.SetParent(collision.gameObject.transform);
         }
     }
+
+    /*IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(2f);
+        Debug.Log("New Scene");
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextSceneIndex);
+    }*/
+   /* IEnumerator LoadNextSceneAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextSceneIndex);
+    }*/
+
 }

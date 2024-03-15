@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlrController2 : MonoBehaviour
@@ -35,6 +36,11 @@ public class PlrController2 : MonoBehaviour
             isOnGround = false;
             rb.AddForce(Jump(),ForceMode2D.Impulse);
         }
+
+        if (transform.position.y < 0.5 && rb.gravityScale == 0)
+        {
+            rb.gravityScale = 1f;
+        }
         EndGame();
 
     }
@@ -42,7 +48,12 @@ public class PlrController2 : MonoBehaviour
     {
         if (this.transform.position.y < -8)
         {
-            Debug.Log("End");
+            SceneManager.LoadScene(3);
+        }
+
+        if(this.transform.position.y > 10)
+        {
+            SceneManager.LoadScene(3);
         }
     }
     protected Vector3 Movement()
@@ -64,6 +75,8 @@ public class PlrController2 : MonoBehaviour
         {
             rb.gravityScale = 0f;
             rb.AddForce(Vector3.up * 5f, ForceMode2D.Impulse);
+
+            
         }
 
         if (collision.gameObject.tag == "Ground"|| collision.gameObject.tag == "Button")
@@ -73,7 +86,7 @@ public class PlrController2 : MonoBehaviour
 
         if (collision.gameObject.tag == "Blade")
         {
-            Debug.Log("End");
+            SceneManager.LoadScene(3);
         }
     }
 }

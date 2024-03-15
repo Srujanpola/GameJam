@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlrController : MonoBehaviour
@@ -16,7 +17,7 @@ public class PlrController : MonoBehaviour
     void Start()
     {
         rb=GetComponent<Rigidbody2D>();
-        isOnGround = true;
+        
         //camera = Camera.main;
     }
 
@@ -37,7 +38,10 @@ public class PlrController : MonoBehaviour
             isOnGround = false;
             rb.AddForce(Jump(), ForceMode2D.Impulse);
         }
-
+        if (transform.position.y < 0.5 && rb.gravityScale == 0)
+        {
+            rb.gravityScale = 1f;
+        }
         EndGame();
     }
 
@@ -46,7 +50,11 @@ public class PlrController : MonoBehaviour
     {
         if(this.transform.position.y < -8)
         {
-            Debug.Log("End");
+            SceneManager.LoadScene(3);
+        }
+        if (this.transform.position.y > 10)
+        {
+            SceneManager.LoadScene(3);
         }
     }
     protected Vector3 Movement()
@@ -63,23 +71,28 @@ public class PlrController : MonoBehaviour
         if(collision.gameObject.tag == "AntiGravityZone")
         {
             rb.gravityScale = 0f;
+
             if (Input.GetKey(KeyCode.W)){
+
                 rb.AddForce(Vector2.down * plrJumpSpd, ForceMode2D.Impulse);
             }
         }
+
         if (collision.gameObject.tag == "Button")
         {
             rb.gravityScale = 0f;
-            rb.AddForce(Vector3.up * 5f, ForceMode2D.Impulse);
+
+            rb.AddForce(Vector3.up * 10f, ForceMode2D.Impulse);
         }
-        if (collision.gameObject.tag == "Ground"||collision.gameObject.tag == "Button")
+
+        if (collision.gameObject.tag == "Ground")
         {
             isOnGround = true;
         }
 
         if (collision.gameObject.tag == "Blade")
         {
-            Debug.Log("End");
+            SceneManager.LoadScene(3);
         }
     }
 }

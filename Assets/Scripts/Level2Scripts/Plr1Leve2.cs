@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Plr1Leve2 : MonoBehaviour {
 
@@ -8,7 +9,7 @@ public class Plr1Leve2 : MonoBehaviour {
     [SerializeField] float playerJumpSpd;
     [SerializeField] bool isPlrOnGround = true;
     public Rigidbody2D rb;
-    bool isObjEquiped=false;
+    bool isObjEquiped = false;
 
     [SerializeField] GameObject Triangle;
     [SerializeField] public Plr2Leve2 Player2;
@@ -55,7 +56,7 @@ public class Plr1Leve2 : MonoBehaviour {
     {
         if (this.transform.position.y < -6.3f)
         {
-            Debug.Log("End");
+            SceneManager.LoadScene(3);
         }
     }
     void EquipObject()
@@ -122,7 +123,7 @@ public class Plr1Leve2 : MonoBehaviour {
 
         if (collision.gameObject.tag == "Blade")
         {
-            Debug.Log("End");
+            SceneManager.LoadScene(3);
         }
     }
 }

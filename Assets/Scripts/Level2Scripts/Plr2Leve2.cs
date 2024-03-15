@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
+using UnityEngine.SceneManagement;
 
 public class Plr2Leve2 : MonoBehaviour
 {
@@ -41,6 +41,12 @@ public class Plr2Leve2 : MonoBehaviour
             rb.gravityScale = 1;
         }
 
+        if(Input.GetKeyUp(KeyCode.UpArrow) && isObjEquiped)
+        {
+            rb.AddForce(Jump(), ForceMode2D.Impulse);
+            rb.gravityScale = 1;
+        }
+
         EquipObject();
         PlayerExchange();
         EndGame();
@@ -49,7 +55,7 @@ public class Plr2Leve2 : MonoBehaviour
     {
         if (this.transform.position.y < -6.3f)
         {
-            Debug.Log("End");
+            SceneManager.LoadScene(3);
         }
     }
     void EquipObject()
@@ -66,6 +72,7 @@ public class Plr2Leve2 : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E) && Triangle.transform.parent == null)
                 {
                     isObjEquiped = true;
+                    //isPlrOnGround = true;
 
                 }
                 else if (Input.GetKeyDown(KeyCode.E) && Triangle.transform.parent != null)
@@ -119,7 +126,7 @@ public class Plr2Leve2 : MonoBehaviour
         }
         if (collision.gameObject.tag == "Blade")
         {
-            Debug.Log("End");
+            SceneManager.LoadScene(3);
         }
     }
 }

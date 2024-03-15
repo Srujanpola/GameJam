@@ -18,7 +18,7 @@ public class MoveObj : MonoBehaviour
         if (!islerpDone)
         {
             timer += Time.deltaTime;
-            float percentage_cmplt = timer / 3f;
+            float percentage_cmplt = timer / 4f;
             this.transform.position = Vector3.Lerp(intitialPosition, targetPosition, percentage_cmplt);
 
             if (percentage_cmplt >= 1f)
